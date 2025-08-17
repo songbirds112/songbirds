@@ -1,0 +1,206 @@
+TITLE=程序注释
+Network 1 
+// 程序段注释
+LD     SM0.0
+CALL   SBR0
+Network 2 
+LD     SM0.0
+CALL   SBR4
+Network 3 
+LD     SM0.0
+CALL   SBR1
+Network 4 
+LD     SM0.0
+CALL   SBR3, &VB0, MW12, VW11, VW13
+Network 5 
+LD     SM0.0
+CALL   SBR2
+CALL   SBR5
+CALL   SBR6
+
+TITLE=子程序注释
+Network 1 
+// 程序段注释
+LD     SM0.1
+MOVB   2#10011001, SMB130
+MOVB   2#10010100, SMB187
+MOVW   10, SMW190
+MOVW   10, SMW192
+MOVB   255, SMB194
+ATCH   INT0, 24
+ENI
+RCV    VB160, 1
+
+TITLE=子程序注释
+Network 1 
+LD     SM0.0
+TON    T38, 1
+Network 2 
+// 程序段注释
+LD     SM0.0
+AN     T38
+MOVB   16#0B, VB100
+MOVB   16#06, VB101
+MOVB   16#24, VB102
+MOVB   16#0, VB103
+MOVB   16#0, VB104
+MOVB   16#0, VB105
+MOVB   16#0, VB106
+MOVB   16#0, VB107
+MOVB   16#0, VB108
+MOVB   16#0, VB109
+MOVB   16#0, VB110
+MOVB   16#0, VB111
+MOVB   16#0, VB112
+XMT    VB100, 1
+
+TITLE=子程序注释
+Network 1 
+// 程序段注释
+LD     SM0.0
+MOVB   12, VB120
+MOVB   16#06, VB121
+MOVB   16#1, VB122
+MOVB   16#1, VB123
+MOVB   16#AA, VB124
+MOVB   16#0, VB125
+MOVB   16#0, VB126
+MOVB   16#0, VB127
+MOVB   16#0, VB128
+MOVB   16#0, VB129
+MOVB   16#0, VB130
+MOVB   16#0, VB131
+MOVB   16#0, VB132
+Network 2 
+LD     SM0.0
+LPS
+AN     T37
+TON    T37, 10
+LPP
+A      T37
+XMT    VB120, 1
+
+TITLE=子程序注释
+Network 1 
+// 程序段注释
+LD     SM0.0
+MOVW   16#FFFF, AC0
+FOR    AC1, 1, LW4
+
+BTI    *LD0, LW8
+XORW   LW8, AC0
+Network 2 
+LD     SM0.0
+FOR    AC2, 1, 8
+SRW    AC0, 1
+A      SM1.1
+ANDW   16#A001, AC0
+Network 3 
+NEXT
+Network 4 
+LD     SM0.0
+DECD   LD0
+Network 5 
+NEXT
+Network 6 
+LD     SM0.0
+SWAP   AC0
+MOVW   AC0, LW6
+MOVW   AC0, *LD0
+
+TITLE=子程序注释
+Network 1 
+LD     SM0.0
+A      M10.0
+LPS
+BTI    VB164, VW264
+AENO
+BTI    VB165, VW268
+AENO
+BTI    VB166, VW272
+LPP
+=      M11.0
+Network 2 
+LD     M11.0
+ITD    VW268, VD268
+Network 3 
+// 程序段注释
+LD     SM0.0
+A      M11.0
+LPS
+MOVB   VB163, VB600
+AENO
+SLB    VB600, 0
+AENO
+MOVW   VW264, VW604
+AENO
+SLW    VW604, 8
+AENO
+MOVD   VD268, VD700
+SLD    VD700, 16
+LPP
+=      M0.0
+Network 4 
+LD     SM0.0
+A      M0.0
+BTI    VB600, VW600
+=      M0.1
+Network 5 
+LD     SM0.0
+A      M0.1
+MOVW   VW600, VW1000
++I     VW604, VW1000
+=      M0.2
+Network 6 
+LD     SM0.0
+A      M0.2
+ITD    VW1000, VD1500
+=      M0.3
+Network 7 
+LD     SM0.0
+A      M0.3
+MOVD   VD1500, VD2000
++D     VD700, VD2000
+=      M0.4
+Network 8 
+LD     SM0.0
+A      M0.4
+DTR    VD2000, VD2200
+Network 9 
+LD     SM0.0
+A      M0.4
+MOVR   VD2200, VD2300
+-R     1800000.0, VD2300
+=      M0.5
+Network 10 
+LD     SM0.0
+A      M0.5
+MOVR   VD2300, VD2400
+/R     10000.0, VD2400
+Network 11 
+LD     SM0.0
+LDR>=  VD2400, 1.0
+OR<=   VD2400, -1.0
+ALD
+=      M22.0
+=      Q0.0
+=      Q0.1
+
+TITLE=中断例程注释
+Network 1 
+// 程序段注释
+LD     SM186.2
+INCW   VW200
+SCPY   VB160, VB300
+Network 2 
+LD     SM0.0
+LPS
+RCV    VB160, 1
+AB=    VB162, 16#11
+=      M10.0
+LRD
+AB=    VB162, 16#22
+=      M20.0
+LPP
+AB=    VB162, 16#13
+=      M30.0
